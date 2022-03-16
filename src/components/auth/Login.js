@@ -13,11 +13,11 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         existingLoginUserCheck(email)
-            .then(user => user.length && user.password === password ? user[0] : false)
+            .then(user => user.length && user[0].password === password ? user[0] : false)
             .then(exists => {
                 if (exists) {
                     sessionStorage.setItem("user_explorer", exists.id)
-                    history.push("/")
+                    history.push("/home")
                 } else {
                     existDialog.current.showModal()
                 }

@@ -1,10 +1,35 @@
 .navbar {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem 0;
+    overflow: hidden;
+    background-color: #5F9EA0; 
 }
 
-.navbar__item {
-    flex-basis: 20%;
-    list-style-type: none;
+.navbar__logo {
+    float: left;
+}
+
+.navbar__login {
+    float: right;
+    padding-right: 2rem;
+}
+
+.navbar__register {
+    float: right;
+    padding-right: 1rem;
+}
+
+.navbar__link {
+    display: block;
+    color: gray;
+    text-align: center;
+    font-size: 24px;
+    padding: 14px 16px;
+    text-decoration: none; 
+    border-bottom: solid gray 1px;
+}
+
+.navbar__link:hover {
+    background-color: bisque;
 }

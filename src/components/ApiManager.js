@@ -13,6 +13,11 @@ export const getLocations = () => {
         .then(response => response.json())
 }
 
+export const getPhotos = () => {
+    return fetch("http://localhost:8088/photos")
+        .then(response => response.json())
+}
+
 export const postUser = (users) => {
     return fetch("http://localhost:8088/users", {
         method: "POST",
