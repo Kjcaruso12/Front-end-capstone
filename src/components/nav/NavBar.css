@@ -22,14 +22,26 @@
 
 .navbar__link {
     display: block;
-    color: gray;
+    color: white;
     text-align: center;
     font-size: 24px;
     padding: 14px 16px;
     text-decoration: none; 
-    border-bottom: solid gray 1px;
+    border-bottom: solid white 1px;
 }
+
+.navbar__item {
+    
+} 
 
 .navbar__link:hover {
     background-color: bisque;
+}
+
+.sidenavbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem 0;
+    overflow: hidden;
+    background-color: #5F9EA0; 
 }

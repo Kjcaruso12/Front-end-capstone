@@ -5,7 +5,7 @@ export default ({ slider, onclick, currentSlide }) => {
         <div className="dots">
             {slider.map((slide, index) => (
                 <span
-                    key={slide}
+                    key={slide.id}
                     className={`${index === currentSlide ? "current_dot" : "dot"}`}
                     onClick={() => onclick(index)}
                 ></span>

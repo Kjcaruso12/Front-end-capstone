@@ -6,7 +6,6 @@ import "./Slider.css"
 
 export const Slider = (props) => {
     const [currentSlide, setCurrentSlide] = useState(0)
-    const [currentImg, setCurrentImg] = useState([])
     const [slider, setSlider] = useState([])
 
 

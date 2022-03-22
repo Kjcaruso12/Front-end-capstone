@@ -17,7 +17,7 @@ export const Login = () => {
             .then(exists => {
                 if (exists) {
                     sessionStorage.setItem("user_explorer", exists.id)
-                    history.push("/home")
+                    history.push("/dashboard")
                 } else {
                     existDialog.current.showModal()
                 }

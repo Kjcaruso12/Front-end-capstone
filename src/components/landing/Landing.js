@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Slider } from "../slider/Slider.js"
 
 
@@ -8,6 +8,7 @@ export const Landing = () => {
         <>
                     <div className="slider">
                         <Slider />
+                        {/* adding more to landing page later */}
                     </div>
         </>
 

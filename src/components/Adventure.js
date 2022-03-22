@@ -1,11 +1,8 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
-import { NavBar, SideNavBar } from "./nav/NavBar";
-import { Login } from "./auth/Login";
-import { Register } from "./auth/Register";
-import { HomeViews } from "./HomeViews";
-import { Landing } from "./landing/Landing";
+import { SideNavBar } from "./nav/NavBar";
+import HomeRoutes from "./HomeRoutes";
 
 export const Adventures = () => (
     <>
@@ -19,22 +16,9 @@ export const Adventures = () => (
                         </>
                     );
                 } else {
-                    return <Redirect to="/home" />;
+                    <HomeRoutes />
                 }
             }}
         />
-
-        <Route path="/login">
-            <NavBar />
-            <Login />
-        </Route>
-        <Route path="/register">
-            <NavBar />
-            <Register />
-        </Route>
-        <Route exact path="/home">
-                <NavBar />
-                <Landing />
-        </Route>
     </>
 );

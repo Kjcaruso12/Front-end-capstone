@@ -1,29 +1,49 @@
+import { fetchIt } from "../Fetch"
+import Settings from "../Settings"
+
 export const existingLoginUserCheck = (email) => {
-    return fetch(`http://localhost:8088/users?email=${email}`)
-        .then(res => res.json())
+    return fetchIt(`${Settings.remoteURL}/users?email=${email}`)
 }
 
 export const existingRegisterUserCheck = (user) => {
-    return fetch(`http://localhost:8088/users?email=${user.email}`)
-        .then(res => res.json())
+    return fetchIt(`${Settings.remoteURL}/users?email=${user.email}`)
+        
 }
 
 export const getLocations = () => {
-    return fetch("http://localhost:8088/locations")
-        .then(response => response.json())
+    return fetchIt(`${Settings.remoteURL}/locations`)
+        
 }
 
 export const getPhotos = () => {
-    return fetch("http://localhost:8088/photos")
-        .then(response => response.json())
+    return fetchIt(`${Settings.remoteURL}/photos`)
+        
 }
 
-export const postUser = (users) => {
-    return fetch("http://localhost:8088/users", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(users)
+export const getYourGuides = (id) => {
+    return fetchIt(`${Settings.remoteURL}/userguides?userId=${id}&_expand=guide`)
+        
+}
+
+export const postUser = (user) => {
+    return fetchIt(`${Settings.remoteURL}/users`, "POST", JSON.stringify(user))
+}
+
+export const deleteGuide = (userGuide) => {
+    return fetchIt(`${Settings.remoteURL}/userguides/${userGuide.id}`, "DELETE")
+}
+
+export const deleteAllSavedGuides = (id) => {
+    //fetch all userGuides for currernt user
+    return fetchIt(`${Settings.remoteURL}/userguides/userId=${id}`)
+    .then((userGuides) => {
+        //iterate to get the array of saved guides where author property is false
+        const matchedGuides = userGuides.map((guide) => {
+            return guide.author === false
+        })
+        for (const savedGuide of matchedGuides) {
+            fetchIt(`${Settings.remoteURL}/userguides/${savedGuide.id}`, "DELETE")
+        }
     })
 }
+

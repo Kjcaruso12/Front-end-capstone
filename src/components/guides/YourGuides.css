@@ -1,0 +1,74 @@
+.your__container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-top: 5rem;
+    padding: 2rem;
+    background-color: rgb(216, 215, 215);
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.your__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    margin-right: 10rem;
+    font-size: 24px;
+}
+
+.guide_container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.guide_header {
+    margin-left: 2.5rem;
+}
+
+.guide_rows {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.guiderow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.guide_image {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.guide__delete {
+    color: #696969;
+    background-color: rgb(216, 215, 215);
+    border: none;
+    margin-right: 2rem;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.guide__delete:hover {
+    color: black;
+}
+
+.create_button {
+    background-color: rgb(197, 197, 197);
+    border: .5px solid lightgray;
+    border-radius: 18px;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+}
+
+.create_button:hover {
+    background-color: rgb(187, 187, 187);
+}
