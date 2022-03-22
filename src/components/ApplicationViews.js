@@ -6,7 +6,8 @@ import DashBoard from "./dashboard/DashBoard"
 
 export const ApplicationViews = () => {
     return (
-        <>  
+        <>
+
             <Route path="/dashboard">
                 <DashBoard />
             </Route>

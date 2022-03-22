@@ -30,7 +30,7 @@ export const GuideDialogSingleDelete = ({ toggleDialog, userGuide }) => {
 export const GuideDialogAllDelete = ({ toggleDialog }) => {
 
     return (
-        <dialog id="dialog--guide" className="dialog--guide">
+        <dialog id="dialog--guides" className="dialog--guides">
             <div>
                 <h2>Are you sure you want to clear Saved Guides?</h2>
             </div>

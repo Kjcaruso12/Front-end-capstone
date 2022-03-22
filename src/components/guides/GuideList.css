@@ -1,0 +1,111 @@
+.your__container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 5rem;
+    margin-left: 10rem;
+    padding: 1rem 3rem 1rem .5rem;
+    background-color: rgb(230, 230, 230);
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.saved__container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 5rem;
+    margin-right: 10rem;
+    padding: 1rem 3rem 1rem .5rem;
+    background-color: rgb(230, 230, 230);
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.your__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.your_guides {
+    padding-right: 1rem;
+}
+
+.title {
+    font-size: 18px;
+}
+
+.guide_list {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100% !important;
+    overflow: hidden;
+}
+
+.guide_header {
+    margin-left: 2.5rem;
+}
+
+.guiderow {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100% !important;
+}
+
+.guide_details {
+    float: right;
+}
+
+.guiderow__title-delete {
+    width: 20%;
+}
+
+.favorites {
+    display: flex;
+    margin-top: 3rem;
+}
+
+.favorites_count {
+    margin-left: .5rem;
+}
+
+.guide_image {
+    width: 200px;
+    height: 185px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.guide_divider {
+    margin: 1.5rem 0;
+}
+
+.guide__delete {
+    color: #696969;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    margin-bottom: 10rem;
+    margin-left: 3rem;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.guide__delete:hover {
+    color: black;
+}
+
+.create_button {
+    background-color: rgb(197, 197, 197);
+    border: .5px solid lightgray;
+    border-radius: 18px;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+}
+
+.create_button:hover {
+    background-color: rgb(187, 187, 187);
+}

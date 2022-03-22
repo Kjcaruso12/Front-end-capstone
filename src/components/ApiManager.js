@@ -7,22 +7,25 @@ export const existingLoginUserCheck = (email) => {
 
 export const existingRegisterUserCheck = (user) => {
     return fetchIt(`${Settings.remoteURL}/users?email=${user.email}`)
-        
+
 }
 
 export const getLocations = () => {
     return fetchIt(`${Settings.remoteURL}/locations`)
-        
+
 }
 
 export const getPhotos = () => {
     return fetchIt(`${Settings.remoteURL}/photos`)
-        
+
 }
 
 export const getYourGuides = (id) => {
     return fetchIt(`${Settings.remoteURL}/userguides?userId=${id}&_expand=guide`)
-        
+}
+
+export const getAllUserGuides = (id) => {
+    return fetchIt(`${Settings.remoteURL}/userguides`)
 }
 
 export const postUser = (user) => {

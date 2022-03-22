@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"
-import { GuideDialogSingleDelete } from "./GuideDialog"
+import { GuideDialogSingleDelete, GuideDialogAllDelete } from "./GuideDialog"
 import useModal from "../../hooks/useModal"
-import { AiOutlinePlus } from "react-icons/ai";
-import { getPhotos, getYourGuides } from "../ApiManager";
+import { getAllUserGuides, getPhotos, getYourGuides } from "../ApiManager";
 import { GuideCard } from "./GuideCard"
 import Settings from "../../Settings";
-import "./YourGuides.css"
+import { useHistory } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai"
+import "./GuideList.css"
 
 
-export const YourGuides = (props) => {
+export const GuideList = (props) => {
     const [YourGuides, setYourGuides] = useState([])
+    const [SavedGuides, setSavedGuides] = useState([])
+    const [allUserGuides, setAllUserGuides] = useState([])
     const [photos, setPhotos] = useState([])
     const [currentGuide, setCurrentGuide] = useState({})
-    let { toggleDialog, modalIsOpen } = useModal("#dialog--guide")
+    let { toggleDialog, modalIsOpen } = useModal("#dialog--guides")
     const history = useHistory()
 
     useEffect(
@@ -24,7 +26,7 @@ export const YourGuides = (props) => {
                     //iterate to get the array of saved guides where author property is true
                     const matchedGuides = userGuides?.filter(guide => guide.author === true)
                     return matchedGuides
-                    })
+                })
                 .then((matchedGuides) => {
                     setYourGuides(matchedGuides)
                 })
@@ -34,8 +36,32 @@ export const YourGuides = (props) => {
 
     useEffect(
         () => {
+            //fetch all userGuides for currernt user
+            return getYourGuides(Settings.currentUser)
+                .then((userGuides) => {
+                    //iterate to get the array of saved guides where author property is false
+                    const matchedGuides = userGuides?.filter(guide => guide.author === false)
+                    return matchedGuides
+                })
+                .then((matchedGuides) => {
+                    setSavedGuides(matchedGuides)
+                })
+        }
+        , []
+    )
+
+    useEffect(
+        () => {
             getPhotos()
                 .then(setPhotos)
+        }
+        , []
+    )
+
+    useEffect(
+        () => {
+            getAllUserGuides()
+                .then(setAllUserGuides)
         }
         , []
     )
@@ -59,9 +85,14 @@ export const YourGuides = (props) => {
         toggleDialog()
     }
 
+    const confirmDeleteAllSaved = () => {
+        toggleDialog()
+    }
+
 
     return (
-        <>
+
+        <div className="guide_list">
             <GuideDialogSingleDelete toggleDialog={toggleDialog} userGuide={currentGuide} />
             <div className="your__container">
                 <div className="your__header">
@@ -73,19 +104,44 @@ export const YourGuides = (props) => {
                         onClick={() => { history.push("/guides/create") }}>{AiOutlinePlus()} Create new guide</button>
                 </div>
                 <div className="your_guides">
-                    <ul className="guide_rows">
                         {YourGuides?.map((userGuide, index) =>
                             <GuideCard key={`guide--${userGuide.id}`}
                                 YourGuide={userGuide}
+                                userGuides={allUserGuides}
                                 photos={photos}
                                 confirmGuideDelete={confirmGuideDelete}
                                 index={index}
                                 lastGuide={YourGuides.length - 1}
                             />)
                         }
-                    </ul>
                 </div>
             </div>
-        </>
+
+
+                <GuideDialogSingleDelete toggleDialog={toggleDialog} userGuide={currentGuide} />
+                <GuideDialogAllDelete toggleDialog={toggleDialog} />
+                <div className="saved__container">
+                    <div className="your__header">
+                        <div>
+                            <h2 className="guide_header">Saved Guides</h2>
+                        </div>
+                        <button
+                            className="create_button"
+                            onClick={() => { confirmDeleteAllSaved() }}>Clear all</button>
+                    </div>
+                    <div className="your_guides">
+                            {SavedGuides?.map((userGuide, index) =>
+                                <GuideCard key={`guide--${userGuide.id}`}
+                                    YourGuide={userGuide}
+                                    userGuides={allUserGuides}
+                                    photos={photos}
+                                    confirmGuideDelete={confirmGuideDelete}
+                                    index={index}
+                                    lastGuide={YourGuides.length - 1}
+                                />)
+                            }
+                    </div>
+                </div>
+            </div>
     )
 }

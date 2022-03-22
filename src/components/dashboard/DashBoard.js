@@ -1,15 +1,11 @@
-import { YourGuides } from "../guides/YourGuides";
 import React from "react";
-import { Route } from "react-router-dom";
-import { SavedGuides } from "../guides/SavedGuides";
+import { GuideList } from "../guides/GuideList";
+
 
 export default () => {
     return (
         <>
-            <div className="guide_container">
-            <YourGuides />
-            <SavedGuides />
-            </div>
+            <GuideList />
         </>
     )
 }

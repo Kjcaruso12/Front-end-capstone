@@ -1,42 +1,52 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import { MdDelete } from "react-icons/md"
+import { AiFillStar } from "react-icons/ai"
+import "./GuideList.css"
 
-
-export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, index }) => {
+export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, index, userGuides }) => {
 
     const matchphoto = photos.find(photo => photo.id === YourGuide.guide.photoId)
+
+    const totalFavorites = (YourGuide) => {
+        const allUserGuides = userGuides.filter(userGuide => userGuide.guideId === YourGuide.id)
+        const numberOfFavorites = allUserGuides.filter(guide => guide.author === false).length
+        return numberOfFavorites
+    }
 
     return (
 
         <>
-            {YourGuide?
-                <li>
-                    <div className="guiderow">
-                        <div className="guide_image">
-                            <Link to={`/guides/create/${YourGuide.id}`}>
-                                <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
-                            </Link>
-                        </div>
+            {YourGuide ?
+                <div className="guiderow">
+                    <div className="guide_image">
+                        <Link to={`/guides/create/${YourGuide.id}`}>
+                            <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
+                        </Link>
+                    </div>
+                    <div className="guide_details">
                         <div className="title">
                             {YourGuide.guide.title}
                         </div>
-                        <div className="guiderow__title-delete">
-                            <button className="guide__delete"
-                                onClick={() => { confirmGuideDelete(YourGuide) }}>
-                                {MdDelete()}
-                            </button>
+                        <div className="favorites">
+                            {AiFillStar()}
+                            <div className="favorites_count">
+                                {totalFavorites(YourGuide)}
+                            </div>
                         </div>
                     </div>
-                    {
-                        lastGuide !== index ?
-                        <div>
-                            <hr className="guide_divider"/>
-                        </div>
-                        :""
-                    }
-                </li>
+                    <button className="guide__delete"
+                        onClick={() => { confirmGuideDelete(YourGuide) }}>
+                        {MdDelete()}
+                    </button>
+                </div>
                 : ""
+            }
+
+            {
+                lastGuide !== index ?
+                    <hr className="guide_divider" />
+                    : ""
             }
 
             { }
