@@ -16,7 +16,7 @@ export const Login = () => {
             .then(user => user.length && user[0].password === password ? user[0] : false)
             .then(exists => {
                 if (exists) {
-                    sessionStorage.setItem("user_explorer", exists.id)
+                    localStorage.setItem("user_explorer", exists.id)
                     history.push("/dashboard")
                 } else {
                     existDialog.current.showModal()

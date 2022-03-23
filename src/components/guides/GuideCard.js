@@ -6,11 +6,11 @@ import "./GuideList.css"
 
 export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, index, userGuides }) => {
 
-    const matchphoto = photos.find(photo => photo.id === YourGuide.guide.photoId)
+    const matchphoto = photos?.find(photo => photo.id === YourGuide.guide.photoId)
 
     const totalFavorites = (YourGuide) => {
-        const allUserGuides = userGuides.filter(userGuide => userGuide.guideId === YourGuide.id)
-        const numberOfFavorites = allUserGuides.filter(guide => guide.author === false).length
+        const allUserGuides = userGuides?.filter(userGuide => userGuide.guideId === YourGuide.id)
+        const numberOfFavorites = allUserGuides?.filter(guide => guide.author === false).length
         return numberOfFavorites
     }
 
@@ -19,7 +19,7 @@ export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, in
         <>
             {YourGuide ?
                 <div className="guiderow">
-                    <div className="guide_image">
+                    <div className="guide_link">
                         <Link to={`/guides/create/${YourGuide.id}`}>
                             <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
                         </Link>
@@ -42,14 +42,11 @@ export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, in
                 </div>
                 : ""
             }
-
             {
                 lastGuide !== index ?
                     <hr className="guide_divider" />
                     : ""
             }
-
-            { }
         </>
     )
 }

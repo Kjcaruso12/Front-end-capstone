@@ -3,7 +3,7 @@ import { useHistory, Link } from "react-router-dom"
 import "./Login.css"
 import { existingRegisterUserCheck, postUser } from "../ApiManager"
 
-export const Register = (props) => {
+export const Register = () => {
     const [user, setuser] = useState({})
     const [password, setPasswordCheck] = useState("")
     const [passCheck, passwordnotValid] = useState(false)
@@ -27,7 +27,7 @@ export const Register = (props) => {
                             .then(res => res.json())
                             .then(createdUser => {
                                 if (createdUser.hasOwnProperty("id")) {
-                                    sessionStorage.setItem("user_explorer", createdUser.id)
+                                    localStorage.setItem("user_explorer", createdUser.id)
                                     history.push("/")
                                 }
                             })

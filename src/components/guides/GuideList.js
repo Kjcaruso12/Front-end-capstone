@@ -18,40 +18,32 @@ export const GuideList = (props) => {
     let { toggleDialog, modalIsOpen } = useModal("#dialog--guides")
     const history = useHistory()
 
+    const currentUser = Settings.currentUser
+
     useEffect(
         () => {
-            //fetch all userGuides for currernt user
-            return getYourGuides(Settings.currentUser)
+            if (currentUser) {
+            let savedGuides = []
+            //fetch all userGuides for current user
+            return getYourGuides(currentUser)
                 .then((userGuides) => {
                     //iterate to get the array of saved guides where author property is true
                     const matchedGuides = userGuides?.filter(guide => guide.author === true)
+                    savedGuides = userGuides?.filter(guide => guide.author === false)
+                    setSavedGuides(savedGuides)
                     return matchedGuides
                 })
                 .then((matchedGuides) => {
                     setYourGuides(matchedGuides)
                 })
         }
-        , []
+    }
+        , [currentUser]
     )
 
     useEffect(
         () => {
-            //fetch all userGuides for currernt user
-            return getYourGuides(Settings.currentUser)
-                .then((userGuides) => {
-                    //iterate to get the array of saved guides where author property is false
-                    const matchedGuides = userGuides?.filter(guide => guide.author === false)
-                    return matchedGuides
-                })
-                .then((matchedGuides) => {
-                    setSavedGuides(matchedGuides)
-                })
-        }
-        , []
-    )
 
-    useEffect(
-        () => {
             getPhotos()
                 .then(setPhotos)
         }
@@ -104,44 +96,44 @@ export const GuideList = (props) => {
                         onClick={() => { history.push("/guides/create") }}>{AiOutlinePlus()} Create new guide</button>
                 </div>
                 <div className="your_guides">
-                        {YourGuides?.map((userGuide, index) =>
-                            <GuideCard key={`guide--${userGuide.id}`}
-                                YourGuide={userGuide}
-                                userGuides={allUserGuides}
-                                photos={photos}
-                                confirmGuideDelete={confirmGuideDelete}
-                                index={index}
-                                lastGuide={YourGuides.length - 1}
-                            />)
-                        }
+                    {YourGuides?.map((userGuide, index) =>
+                        <GuideCard key={`guide--${userGuide.id}`}
+                            YourGuide={userGuide}
+                            userGuides={allUserGuides}
+                            photos={photos}
+                            confirmGuideDelete={confirmGuideDelete}
+                            index={index}
+                            lastGuide={YourGuides.length - 1}
+                        />)
+                    }
                 </div>
             </div>
 
 
-                <GuideDialogSingleDelete toggleDialog={toggleDialog} userGuide={currentGuide} />
-                <GuideDialogAllDelete toggleDialog={toggleDialog} />
-                <div className="saved__container">
-                    <div className="your__header">
-                        <div>
-                            <h2 className="guide_header">Saved Guides</h2>
-                        </div>
-                        <button
-                            className="create_button"
-                            onClick={() => { confirmDeleteAllSaved() }}>Clear all</button>
+            <GuideDialogSingleDelete toggleDialog={toggleDialog} userGuide={currentGuide} />
+            <GuideDialogAllDelete toggleDialog={toggleDialog} />
+            <div className="saved__container">
+                <div className="your__header">
+                    <div>
+                        <h2 className="guide_header">Saved Guides</h2>
                     </div>
-                    <div className="your_guides">
-                            {SavedGuides?.map((userGuide, index) =>
-                                <GuideCard key={`guide--${userGuide.id}`}
-                                    YourGuide={userGuide}
-                                    userGuides={allUserGuides}
-                                    photos={photos}
-                                    confirmGuideDelete={confirmGuideDelete}
-                                    index={index}
-                                    lastGuide={YourGuides.length - 1}
-                                />)
-                            }
-                    </div>
+                    <button
+                        className="create_button"
+                        onClick={() => { confirmDeleteAllSaved() }}>Clear all</button>
+                </div>
+                <div className="your_guides">
+                    {SavedGuides?.map((userGuide, index) =>
+                        <GuideCard key={`guide--${userGuide.id}`}
+                            YourGuide={userGuide}
+                            userGuides={allUserGuides}
+                            photos={photos}
+                            confirmGuideDelete={confirmGuideDelete}
+                            index={index}
+                            lastGuide={YourGuides.length - 1}
+                        />)
+                    }
                 </div>
             </div>
+        </div>
     )
 }

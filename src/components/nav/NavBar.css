@@ -1,24 +1,51 @@
+
+
 .navbar {
+    display: flex;
+    justify-content: space-between;
     list-style-type: none;
     margin: 0;
     padding: 1rem 0;
     overflow: hidden;
-    background-color: #5F9EA0; 
+    background-color: #5F9EA0;
+    z-index: 1;
 }
 
 .navbar__logo {
-    float: left;
+
 }
 
 .navbar__login {
-    float: right;
     padding-right: 2rem;
 }
 
 .navbar__register {
-    float: right;
     padding-right: 1rem;
 }
+
+.navbar__profile {
+    padding-right: 2rem;
+}
+
+.navbar__search {
+    margin-left: 70rem;
+    margin-top: 1rem;
+    width: 15%;
+}
+
+#city_search {
+    font-size: 18px;
+    padding-left: .5rem;
+    height: 2rem;
+    width: 100%;
+}
+
+.profile_image {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
 
 .navbar__link {
     display: block;
@@ -26,13 +53,9 @@
     text-align: center;
     font-size: 24px;
     padding: 14px 16px;
-    text-decoration: none; 
+    text-decoration: none;
     border-bottom: solid white 1px;
 }
-
-.navbar__item {
-    
-} 
 
 .navbar__link:hover {
     background-color: bisque;
@@ -43,5 +66,57 @@
     margin: 0;
     padding: 1rem 0;
     overflow: hidden;
-    background-color: #5F9EA0; 
+    background-color: #5F9EA0;
 }
+
+.profile_button {
+    background-color: #5F9EA0;
+    border-radius: 50%;
+    margin-right: 2rem;
+    color: white;
+    font-size: 16px;
+    height: 60px;
+    width: 60px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn {
+    background-color: #5F9EA0;
+    border-radius: 50%;
+    margin-right: 2rem;
+    color: white;
+    font-size: 16px;
+    height: 60px;
+    width: 60px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown {
+    background-color: lightgray;
+    position: absolute;
+    z-index: 1;
+    top: 5rem;
+    right: 1.5rem;
+    min-width: 160px;
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+}
+
+
+.profile_link {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: gray;}

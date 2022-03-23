@@ -1,7 +1,5 @@
-import { useHistory } from "react-router-dom"
-
 export const Logout = () => {
-    const history = useHistory()
-    sessionStorage.removeItem("user_explorer")
-    history.push("/")
-}
+        console.log("*** Toggling auth state and removing credentials ***")
+        localStorage.removeItem("kennel_token")
+        sessionStorage.removeItem("kennel_token")
+    }

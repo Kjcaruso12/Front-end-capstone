@@ -1,4 +1,4 @@
 export default {
     remoteURL: "http://localhost:8088",
-    currentUser: sessionStorage.getItem("user_explorer")
+    currentUser: localStorage.getItem("user_explorer")
 }
