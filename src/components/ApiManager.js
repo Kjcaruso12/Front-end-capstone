@@ -19,12 +19,10 @@ export const getCurrentUser = () => {
 
 export const getLocations = () => {
     return fetchIt(`${Settings.remoteURL}/locations`)
-
 }
 
 export const getPhotos = () => {
     return fetchIt(`${Settings.remoteURL}/photos`)
-
 }
 
 export const getYourGuides = (id) => {
@@ -37,6 +35,14 @@ export const getAllUserGuides = () => {
 
 export const postUser = (user) => {
     return fetchIt(`${Settings.remoteURL}/users`, "POST", JSON.stringify(user))
+}
+
+export const putUser = (user) => {
+    return fetchIt(`${Settings.remoteURL}/users`, "PUT", JSON.stringify(user))
+}
+
+export const deleteUser = (userId) => {
+    return fetchIt(`${Settings.remoteURL}/users/${userId}`, "DELETE")
 }
 
 export const deleteGuide = (userGuide) => {

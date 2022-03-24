@@ -22,7 +22,7 @@ export const GuideList = (props) => {
 
     useEffect(
         () => {
-            if (currentUser) {
+            if (currentUser !== 0) {
             let savedGuides = []
             //fetch all userGuides for current user
             return getYourGuides(currentUser)
@@ -43,7 +43,6 @@ export const GuideList = (props) => {
 
     useEffect(
         () => {
-
             getPhotos()
                 .then(setPhotos)
         }

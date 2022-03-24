@@ -27,7 +27,7 @@ export const CitySelect = (props) => {
             })
         }
         console.log('matches', matches)
-        setSuggestions(matches) 
+        setSuggestions(matches)
         setText(text)
     }
 
