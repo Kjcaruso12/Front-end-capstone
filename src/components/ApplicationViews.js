@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { Account } from "./account/Account"
 import DashBoard from "./dashboard/DashBoard"
+import GuideRoutes from "./GuideRoutes"
 import { NavBarLoggedIn } from "./nav/NavBar"
 
 
@@ -16,6 +17,7 @@ export const ApplicationViews = () => {
             <Route path="/account">
                 <Account />
             </Route>
+            <GuideRoutes />
         </>
     )
 }

@@ -5,7 +5,7 @@ import { AccountDialog } from "./AccountDialog"
 import { useHistory } from "react-router-dom"
 
 
-export const Account = () => {
+export const Account = (props) => {
     const [profilePic, setProfilePic] = useState({})
     const [currentUser, setCurrentUser] = useState({})
     let { toggleAccountDialog, accountModalIsOpen } = useModalAccount("#dialog--account")

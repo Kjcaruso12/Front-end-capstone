@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { CitySelect } from "./guides/CitySelect";
 import { GuideForm } from "./guides/GuideForm";
 
-export default DashBoard = () => {
+export default () => {
     return (
         <>
             <Route exact path="/guides/create">

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { getPhotos, getCurrentUser } from "../ApiManager"
+import { GiHamburgerMenu } from "react-icons/gi"
 import "./NavBar.css"
-import { ProfileNavDropDown } from "./NavDropDown"
-import { Logout } from "../auth/Logout"
+import { ProfileNavDropDown, SideNavDropDown } from "./NavDropDown"
 
 export const NavBarLoggedOut = (props) => {
     return (
@@ -21,26 +21,11 @@ export const NavBarLoggedOut = (props) => {
     )
 }
 
-export const SideNavBar = (props) => {
-    return (
-        <ul className="sidenavbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/home">Home</Link>
-            </li>
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/guides">Browse Guides</Link>
-            </li>
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/locations">Explore</Link>
-            </li>
-        </ul>
-    )
-}
-
 export const NavBarLoggedIn = (props) => {
     const [photos, setPhotos] = useState([])
     const [currentUser, setCurrentUser] = useState({})
     const [open, setOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(
         () => {
@@ -67,11 +52,27 @@ export const NavBarLoggedIn = (props) => {
         }
     }
 
+    // window.onclick = function (event) {
+    //     if (!event.target.matches('.sidenav_button')) {
+    //         setIsOpen(false)
+    //     }
+    // }
+
 
     const matchingPicture = photos.find(photo => photo.id === currentUser?.photoId)
 
     return (
         <ul className="navbar">
+            <li className="sidenav__dropdown">
+                <button
+                    className="sidenav_button"
+                    onClick={() => {
+                        setIsOpen(!isOpen)
+                    }}>
+                        {GiHamburgerMenu()}
+                </button>
+                <SideNavDropDown isOpen={isOpen} />
+            </li>
             <li className="navbar__logo">
                 <img className="logo" src={require("./AdventureBound.png")} alt="Company Logo" width="200" height="200" />
             </li>
@@ -91,10 +92,10 @@ export const NavBarLoggedIn = (props) => {
                                         'Authorization': `Basic ${auth_key}`
                                     }
                                 })
-                                .then(res => res.json())
-                                .then((data) => {
-                                    console.log(data)
-                                })
+                                    .then(res => res.json())
+                                    .then((data) => {
+                                        console.log(data)
+                                    })
                             }
                         }}
                         id="city_search"
