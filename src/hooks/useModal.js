@@ -1,20 +1,54 @@
 import { useState } from "react"
 
-const useModal = (selector) => {
+export const useModalSingle = (selector) => {
 
-    const [modalIsOpen, setIsOpen] = useState(false)
+    const [singleModalIsOpen, setSingleIsOpen] = useState(false)
 
-    const toggleDialog = () => {
-        setIsOpen(!modalIsOpen)
+    const toggleSingleDialog = () => {
+        setSingleIsOpen(!singleModalIsOpen)
 
-        if (modalIsOpen) {
+        if (singleModalIsOpen) {
             document.querySelector(`${selector}`).removeAttribute("open")
         } else {
             document.querySelector(`${selector}`).setAttribute("open", true)
         }
     }
 
-    return { toggleDialog, modalIsOpen }
+    return { toggleSingleDialog, singleModalIsOpen }
 }
 
-export default useModal
+export const useModalAll = (selector) => {
+
+    const [allModalIsOpen, setAllIsOpen] = useState(false)
+
+    const toggleAllDialog = () => {
+        setAllIsOpen(!allModalIsOpen)
+
+        if (allModalIsOpen) {
+            document.querySelector(`${selector}`).removeAttribute("open")
+        } else {
+            document.querySelector(`${selector}`).setAttribute("open", true)
+        }
+    }
+
+    return { toggleAllDialog, allModalIsOpen }
+}
+
+export const useModalAccount = (selector) => {
+
+    const [accountModalIsOpen, setAccountIsOpen] = useState(false)
+
+    const toggleAccountDialog = () => {
+        setAccountIsOpen(!accountModalIsOpen)
+
+        if (accountModalIsOpen) {
+            document.querySelector(`${selector}`).removeAttribute("open")
+        } else {
+            document.querySelector(`${selector}`).setAttribute("open", true)
+        }
+    }
+
+    return { toggleAccountDialog, accountModalIsOpen }
+}
+
+

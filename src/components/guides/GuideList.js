@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { GuideDialogSingleDelete, GuideDialogAllDelete } from "./GuideDialog"
-import useModal from "../../hooks/useModal"
+import { useModalAll, useModalSingle } from "../../hooks/useModal";
 import { getAllUserGuides, getPhotos, getYourGuides } from "../ApiManager";
 import { GuideCard } from "./GuideCard"
 import Settings from "../../Settings";
@@ -15,7 +15,8 @@ export const GuideList = (props) => {
     const [allUserGuides, setAllUserGuides] = useState([])
     const [photos, setPhotos] = useState([])
     const [currentGuide, setCurrentGuide] = useState({})
-    let { toggleDialog, modalIsOpen } = useModal("#dialog--guides")
+    let { toggleSingleDialog, singleModalIsOpen } = useModalSingle("#dialog--guide")
+    let { toggleAllDialog, allModalIsOpen } = useModalAll("#dialog--guides")
     const history = useHistory()
 
     const currentUser = Settings.currentUser
@@ -60,31 +61,46 @@ export const GuideList = (props) => {
     useEffect(() => {
         const handler = e => {
             // event keyCode = escape button and modalIsOpen
-            if (e.keyCode === 27 && modalIsOpen) {
+            if (e.keyCode === 27 && singleModalIsOpen) {
                 // run toggleDialog()
-                toggleDialog()
+                toggleSingleDialog()
             }
         }
         // adds eventListener
         window.addEventListener("keyup", handler)
         // removes eventListener?
         return () => window.removeEventListener("keyup", handler)
-    }, [toggleDialog, modalIsOpen])
+    }, [toggleSingleDialog, singleModalIsOpen])
+
+    useEffect(() => {
+        const handler = e => {
+            // event keyCode = escape button and modalIsOpen
+            if (e.keyCode === 27 && allModalIsOpen) {
+                // run toggleDialog()
+                toggleAllDialog()
+            }
+        }
+        // adds eventListener
+        window.addEventListener("keyup", handler)
+        // removes eventListener?
+        return () => window.removeEventListener("keyup", handler)
+    }, [toggleAllDialog, allModalIsOpen])
 
     const confirmGuideDelete = guide => {
         setCurrentGuide(guide)
-        toggleDialog()
+        toggleSingleDialog()
     }
 
     const confirmDeleteAllSaved = () => {
-        toggleDialog()
+        toggleAllDialog()
     }
 
 
     return (
 
         <div className="guide_list">
-            <GuideDialogSingleDelete toggleDialog={toggleDialog} userGuide={currentGuide} />
+            <GuideDialogAllDelete toggleAllDialog={toggleAllDialog} />
+            <GuideDialogSingleDelete toggleSingleDialog={toggleSingleDialog} userGuide={currentGuide} />
             <div className="your__container">
                 <div className="your__header">
                     <div>
@@ -107,10 +123,6 @@ export const GuideList = (props) => {
                     }
                 </div>
             </div>
-
-
-            <GuideDialogSingleDelete toggleDialog={toggleDialog} userGuide={currentGuide} />
-            <GuideDialogAllDelete toggleDialog={toggleDialog} />
             <div className="saved__container">
                 <div className="your__header">
                     <div>

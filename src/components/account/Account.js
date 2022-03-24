@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getCurrentUser, getPhotos, putUser } from "../ApiManager"
-import useModal from "../../hooks/useModal"
+import { useModalAccount } from "../../hooks/useModal"
 import { AccountDialog } from "./AccountDialog"
 import { useHistory } from "react-router-dom"
 
@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom"
 export const Account = () => {
     const [profilePic, setProfilePic] = useState({})
     const [currentUser, setCurrentUser] = useState({})
-    let { toggleDialog, modalIsOpen } = useModal("#dialog--account")
+    let { toggleAccountDialog, accountModalIsOpen } = useModalAccount("#dialog--account")
     const history = useHistory()
     const [newInfo, setNewInfo] = useState({
         username: currentUser?.username,
@@ -42,9 +42,9 @@ export const Account = () => {
     useEffect(() => {
         const handler = e => {
             // event keyCode = escape button and modalIsOpen
-            if (e.keyCode === 27 && modalIsOpen) {
+            if (e.keyCode === 27 && accountModalIsOpen) {
                 // run toggleDialog()
-                toggleDialog()
+                toggleAccountDialog()
             }
         }
         // adds eventListener
@@ -52,12 +52,11 @@ export const Account = () => {
         console.log("event useEffect fired")
         // removes eventListener?
         return () => window.removeEventListener("keyup", handler)
-    }, [toggleDialog, modalIsOpen])
+    }, [toggleAccountDialog, accountModalIsOpen])
 
-    const handleUpdates = (e) => {
-        e.preventDefault()
+    const handleUpdates = () => {
         putUser(newInfo)
-            .then(history.push("/"))
+            .then(history.push("/dashboard"))
     }
 
     const handleUserInput = (event) => {
@@ -66,11 +65,12 @@ export const Account = () => {
         setNewInfo(copy)
     }
 
+
     return (
         <>
             {currentUser ?
                 <main className="container--account">
-                    <AccountDialog toggleDialog={toggleDialog} currentUser={currentUser} />
+                    <AccountDialog toggleAccountDialog={toggleAccountDialog} currentUser={currentUser} />
                     <section>
                         <form className="form--account">
                             <h2>Your Account</h2>
@@ -84,7 +84,7 @@ export const Account = () => {
                             <fieldset>
                                 <label htmlFor="username"> Username </label>
                                 <input type="text"
-                                    value={currentUser.username}
+                                    defaultValue={currentUser.username}
                                     onChange={handleUserInput}
                                     id="username"
                                     className="form-field"
@@ -93,7 +93,7 @@ export const Account = () => {
                             <fieldset>
                                 <label htmlFor="password"> Password </label>
                                 <input type="text"
-                                    value={currentUser.password}
+                                    defaultValue={currentUser.password}
                                     onChange={handleUserInput}
                                     id="password"
                                     className="form-field"
@@ -103,7 +103,10 @@ export const Account = () => {
                                 <button
                                     className="update"
                                     type="submit"
-                                    onClick={handleUpdates}>
+                                    onClick={() => {
+                                        handleUpdates()
+                                    }}
+                                >
                                     Save Changes
                                 </button>
                             </fieldset>
@@ -111,7 +114,10 @@ export const Account = () => {
                                 <button
                                     className="delete"
                                     type="delete"
-                                    onClick={toggleDialog}>
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        toggleAccountDialog()}}
+                                    >
                                     Delete Account
                                 </button>
                             </fieldset>

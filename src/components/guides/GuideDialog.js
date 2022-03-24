@@ -2,7 +2,7 @@ import React from "react"
 import { deleteAllSavedGuides, deleteGuide } from "../ApiManager"
 import Settings from "../../Settings"
 
-export const GuideDialogSingleDelete = ({ toggleDialog, userGuide }) => {
+export const GuideDialogSingleDelete = ({ toggleSingleDialog, userGuide }) => {
 
     return (
         <dialog id="dialog--guide" className="dialog--guide">
@@ -19,7 +19,7 @@ export const GuideDialogSingleDelete = ({ toggleDialog, userGuide }) => {
                 </button>
                 <button
                     id="closeButton"
-                    onClick={toggleDialog}>
+                    onClick={toggleSingleDialog}>
                     Cancel
                 </button>
             </div>
@@ -27,7 +27,7 @@ export const GuideDialogSingleDelete = ({ toggleDialog, userGuide }) => {
     )
 }
 
-export const GuideDialogAllDelete = ({ toggleDialog }) => {
+export const GuideDialogAllDelete = ({ toggleAllDialog }) => {
 
     return (
         <dialog id="dialog--guides" className="dialog--guides">
@@ -44,7 +44,7 @@ export const GuideDialogAllDelete = ({ toggleDialog }) => {
                 </button>
                 <button
                     id="closeButton"
-                    onClick={toggleDialog}>
+                    onClick={toggleAllDialog}>
                     Cancel
                 </button>
             </div>

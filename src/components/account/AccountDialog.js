@@ -2,7 +2,7 @@ import React from "react"
 import { deleteUser } from "../ApiManager"
 import { useHistory } from "react-router-dom"
 
-export const AccountDialog = ({ toggleDialog, currentUser }) => {
+export const AccountDialog = ({ toggleAccountDialog, currentUser }) => {
     const history = useHistory()
 
     const handleDeleteAccount = (e) => {
@@ -24,12 +24,14 @@ export const AccountDialog = ({ toggleDialog, currentUser }) => {
             </div>
             <div>
                 <button
-                    onClick={handleDeleteAccount}>
+                    id="deletebtn"
+                    onClick={handleDeleteAccount}
+                    >
                     Confirm
                 </button>
                 <button
                     id="closeButton"
-                    onClick={toggleDialog}>
+                    onClick={toggleAccountDialog}>
                     Cancel
                 </button>
             </div>
