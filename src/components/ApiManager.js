@@ -17,12 +17,24 @@ export const getCurrentUser = () => {
     return fetchIt(`${Settings.remoteURL}/users/${Settings.currentUser}`)
 }
 
-export const getLocations = () => {
-    return fetchIt(`${Settings.remoteURL}/locations`)
+export const getLocations = (guideId) => {
+    return fetchIt(`${Settings.remoteURL}/locations?guideId=${guideId}`)
 }
 
 export const getPhotos = () => {
     return fetchIt(`${Settings.remoteURL}/photos`)
+}
+
+export const getOtherUserGuides = () => {
+    return fetchIt(`${Settings.remoteURL}/userguides?expand=guide`)
+}
+
+export const getAllGuides = () => {
+    return fetchIt(`${Settings.remoteURL}/guides`)
+}
+
+export const getcurrentGuide = (guideId) => {
+    return fetchIt(`${Settings.remoteURL}/guides/${guideId}`)
 }
 
 export const getYourGuides = (id) => {
@@ -31,6 +43,18 @@ export const getYourGuides = (id) => {
 
 export const getAllUserGuides = () => {
     return fetchIt(`${Settings.remoteURL}/userguides`)
+}
+
+export const postGuide = (location) => {
+    return fetchIt(`${Settings.remoteURL}/guides`, "POST", JSON.stringify(location))
+}
+
+export const postUserGuide = (location) => {
+    return fetchIt(`${Settings.remoteURL}/userguides`, "POST", JSON.stringify(location))
+}
+
+export const postGuideLocations = (guideLocationArr) => {
+    return fetchIt(`${Settings.remoteURL}/guidelocations`, "POST", JSON.stringify(guideLocationArr))
 }
 
 export const postUser = (user) => {

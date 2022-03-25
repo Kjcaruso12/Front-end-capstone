@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.form--login {
+    text-align: center;
+}
+
+.link--register {
+    text-align: center;
+}

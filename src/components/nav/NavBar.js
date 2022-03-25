@@ -9,7 +9,7 @@ export const NavBarLoggedOut = (props) => {
     return (
         <ul className="navbar">
             <li className="navbar__logo">
-                <img className="logo" src={require("./AdventureBound.png")} alt="Company Logo" width="200" height="200" />
+                <img className="logo" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNccW7TWXzwbtB0dN03i3TJoRFeGrrI_CGTg&usqp=CAU"} alt="Company Logo" width="75" height="75" />
             </li>
             <li className="navbar__register">
                 <Link className="navbar__link" to="/register">Sign Up</Link>
@@ -74,7 +74,7 @@ export const NavBarLoggedIn = (props) => {
                 <SideNavDropDown isOpen={isOpen} />
             </li>
             <li className="navbar__logo">
-                <img className="logo" src={require("./AdventureBound.png")} alt="Company Logo" width="200" height="200" />
+                <img className="logo" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNccW7TWXzwbtB0dN03i3TJoRFeGrrI_CGTg&usqp=CAU"} alt="Company Logo" width="75" height="75" />
             </li>
             <li className="navbar__search">
                 <div>
@@ -110,7 +110,7 @@ export const NavBarLoggedIn = (props) => {
                             setOpen(!open)
                         }} />
                 </button>
-                <ProfileNavDropDown open={open} />
+                <ProfileNavDropDown open={open} setCurrentUser={setCurrentUser} />
             </li>
         </ul>
     )

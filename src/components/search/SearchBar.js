@@ -4,7 +4,7 @@ import "./SearchBar.css"
 
 
 export const SearchBar = () => {
-    const [text, setText] = useState("")
+    const [location, setLocation] = useState({})
     const [suggestions, setSuggestions] = useState([])
     const ulRef = useRef()
     const inputRef = useRef()
@@ -40,14 +40,14 @@ export const SearchBar = () => {
             })
                 .then(res => res.json())
                 .then((location) => {
+                    console.log(location)
                     const locationData = location.data.map(destination => {
-                        return destination.attributes.name
+                        return destination
                     })
                     return locationData
                 })
                 .then((locationData) => {
                     setSuggestions(locationData)
-                    setText(query)
                 })
         }, 500)
     }
@@ -62,26 +62,30 @@ export const SearchBar = () => {
                     placeholder="Which location?"
                     ref={inputRef} />
                 <ul className="city_list" ref={ulRef}>
-                    {
+                    {suggestions?
                         suggestions.map((suggestion, index) => {
                             return <button
+                                id={suggestion.id}
                                 key={index}
                                 type="button"
-                                value={suggestion}
+                                value={suggestion.attributes.name}
                                 className="citylist_item"
                                 onClick={(e) => {
-                                    inputRef.current.value = suggestion
+                                    inputRef.current.value = suggestion.attributes.name
+                                    setLocation(suggestion)
+
                                 }}>
-                                {suggestion}
+                                {suggestion.attributes.name}
                             </button>
                         })
-
+                        :""
                     }
                 </ul>
             </div>
             <button
                 onClick={() => {
-                    history.push(`/guides/create/${text + " guide"}`)
+
+                    history.push(`/guides/create/${location.id}`)
                 }
                 }>
                 Start Guide

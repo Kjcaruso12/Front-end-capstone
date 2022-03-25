@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { MdDelete } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
 import "./GuideList.css"
 
 export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, index, userGuides }) => {
-
     const matchphoto = photos?.find(photo => photo.id === YourGuide.guide.photoId)
 
     const totalFavorites = (YourGuide) => {
@@ -14,15 +13,22 @@ export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, in
         return numberOfFavorites
     }
 
+    const isAuthor = YourGuide.author
     return (
 
         <>
-            {YourGuide ?
+            {YourGuide?
                 <div className="guiderow">
                     <div className="guide_link">
+                        {isAuthor?
                         <Link to={`/guides/create/${YourGuide.id}`}>
                             <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
                         </Link>
+                        :
+                        <Link to={`/guides/${YourGuide.guideId}`}>
+                            <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
+                        </Link>
+                        }
                     </div>
                     <div className="guide_details">
                         <div className="title">

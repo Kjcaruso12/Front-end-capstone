@@ -9,7 +9,7 @@
     z-index: 1;
 }
 
-.navbar__logo {
+.navbar_logo {
 
 }
 
@@ -19,6 +19,7 @@
 
 .navbar__register {
     padding-right: 1rem;
+    margin-left: 100rem;
 }
 
 .navbar__profile {
@@ -71,7 +72,7 @@
 
 .sidenav_button {
     background-color: #5F9EA0;
-    margin-right: 3rem;
+    margin-top: .5rem;
     margin-left: 1rem;
     color: LightBlue;
     font-size: 56px;
