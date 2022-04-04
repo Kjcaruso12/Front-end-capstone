@@ -1,6 +1,8 @@
 import { fetchIt } from "../Fetch"
 import Settings from "../Settings"
 
+const user = Settings.currentUser
+
 export const existingLoginUserCheck = (email) => {
     return fetchIt(`${Settings.remoteURL}/users?email=${email}`)
 }
@@ -18,7 +20,7 @@ export const getCurrentUser = () => {
 }
 
 export const getLocations = (guideId) => {
-    return fetchIt(`${Settings.remoteURL}/locations?guideId=${guideId}`)
+    return fetchIt(`${Settings.remoteURL}/locations?guideId=${guideId}&expand=guide`)
 }
 
 export const getPhotos = () => {
@@ -37,13 +39,14 @@ export const getcurrentGuide = (guideId) => {
     return fetchIt(`${Settings.remoteURL}/guides/${guideId}`)
 }
 
-export const getYourGuides = (id) => {
-    return fetchIt(`${Settings.remoteURL}/userguides?userId=${id}&_expand=guide`)
+export const getYourGuides = (user) => {
+    return fetchIt(`${Settings.remoteURL}/userguides?userId=${user}&_expand=guide`)
 }
 
 export const getAllUserGuides = () => {
     return fetchIt(`${Settings.remoteURL}/userguides`)
 }
+
 
 export const postGuide = (location) => {
     return fetchIt(`${Settings.remoteURL}/guides`, "POST", JSON.stringify(location))
@@ -53,12 +56,20 @@ export const postUserGuide = (location) => {
     return fetchIt(`${Settings.remoteURL}/userguides`, "POST", JSON.stringify(location))
 }
 
-export const postGuideLocations = (guideLocationArr) => {
-    return fetchIt(`${Settings.remoteURL}/guidelocations`, "POST", JSON.stringify(guideLocationArr))
+export const postGuideLocations = (guideLocation) => {
+    return fetchIt(`${Settings.remoteURL}/locations`, "POST", JSON.stringify(guideLocation))
 }
 
 export const postUser = (user) => {
     return fetchIt(`${Settings.remoteURL}/users`, "POST", JSON.stringify(user))
+}
+
+export const putLocations = (location) => {
+    return fetchIt(`${Settings.remoteURL}/locations/${location.id}`, "PUT", JSON.stringify(location))
+}
+
+export const putGuide = (guide) => {
+    return fetchIt(`${Settings.remoteURL}/guides/${guide.id}`, "PUT", JSON.stringify(guide))
 }
 
 export const putUser = (user) => {

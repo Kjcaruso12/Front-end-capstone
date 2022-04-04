@@ -8,7 +8,7 @@ export default () => {
 
     return (
         <>
-            <Route path="/">
+            <Route exact path="/">
                 <DashBoard />
             </Route>
             <Route path="/account">

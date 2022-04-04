@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { getAllGuides } from "../ApiManager";
 import "./SearchBar.css"
 
 
-export const SearchBar = () => {
+export const SearchBar = (props) => {
+    const [guides, setGuides] = useState([])
     const [location, setLocation] = useState({})
     const [suggestions, setSuggestions] = useState([])
     const ulRef = useRef()
@@ -21,6 +23,14 @@ export const SearchBar = () => {
                 ulRef.current.style.display = 'none'
             })
         }, []
+    )
+
+    useEffect(
+        () => {
+            getAllGuides()
+            .then(setGuides)
+        }
+        , []
     )
 
     const doCitySearch = query => {
@@ -84,7 +94,6 @@ export const SearchBar = () => {
             </div>
             <button
                 onClick={() => {
-
                     history.push(`/guides/create/${location.id}`)
                 }
                 }>

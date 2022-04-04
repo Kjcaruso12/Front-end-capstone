@@ -21,7 +21,7 @@ export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, in
                 <div className="guiderow">
                     <div className="guide_link">
                         {isAuthor?
-                        <Link to={`/guides/create/${YourGuide.id}`}>
+                        <Link to={`/guides/create/${YourGuide.guide.cityId}`}>
                             <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
                         </Link>
                         :

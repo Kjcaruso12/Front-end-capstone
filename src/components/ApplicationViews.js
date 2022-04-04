@@ -3,7 +3,7 @@ import AccountRoutes from "./AccountRoutes"
 import GuideRoutes from "./GuideRoutes"
 
 
-export default () => {
+export const ApplicationViews = () => {
     return (
         <>
             <AccountRoutes />

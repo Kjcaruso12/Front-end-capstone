@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Adventures } from './components/Adventure';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
 
-ReactDOM.render((
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Adventures />
     </BrowserRouter>
-  </React.StrictMode>
-),
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

@@ -1,13 +1,18 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import  ApplicationViews  from "./ApplicationViews";
+import { ApplicationViews } from "./ApplicationViews";
 import HomeRoutes from "./HomeRoutes";
 
-export const Adventures = () => {
-    return <>
-        <Route render={() => {
-                if (localStorage.getItem("user_explorer") !== null) {
-                    return <ApplicationViews />
+export const Adventures = () => (
+    <>
+        <Route
+            render={() => {
+                if (localStorage.getItem("user_explorer")) {
+                    return (
+                        <>
+                            <ApplicationViews />
+                        </>
+                    );
                 } else {
                     return <Redirect to="/home" />
                 }
@@ -15,4 +20,4 @@ export const Adventures = () => {
         />
         <HomeRoutes />
     </>
-}
+);
