@@ -109,17 +109,17 @@ export const GuideList = (props) => {
                         <h2 className="font-weight-bold mb-3 line-height-1">Recent Guides</h2>
                     </div>
                     <div className="row mt-n5">
-
-                {otherGuides?.map((guide, index) =>
-                    <GuideView key={`guide--${guide.id}`}
-                    currentGuide={guide}
-                    userGuides={allUserGuides}
-                    photos={photos}
-                    index={index}
-                    lastGuide={YourGuides.length - 1}
-                    />)
-                }
-                </div>
+                        {otherGuides?.map((guide, index) =>
+                            <GuideView key={`guide--${guide.id}`}
+                                currentGuide={guide}
+                                userGuides={allUserGuides}
+                                photos={photos}
+                                index={index}
+                                lastGuide={YourGuides.length - 1}
+                            />)
+                        }
+                    </div>
+                    </div>
 
 
 

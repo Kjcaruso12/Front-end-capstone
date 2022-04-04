@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { getPhotos, getCurrentUser } from "../ApiManager"
+import { getPhotos } from "../ApiManager"
 import { GiHamburgerMenu } from "react-icons/gi"
+import { getCurrentUser } from "../ApiManager"
 import "./NavBar.css"
 import { ProfileNavDropDown, SideNavDropDown } from "./NavDropDown"
 
-export const NavBarLoggedOut = (props) => {
+export const NavBarLoggedOut = () => {
     return (
         <ul className="navbar">
             <li className="navbar__logo">
@@ -21,9 +22,10 @@ export const NavBarLoggedOut = (props) => {
     )
 }
 
-export const NavBarLoggedIn = (props) => {
-    const [photos, setPhotos] = useState([])
+export const NavBarLoggedIn = () => {
     const [currentUser, setCurrentUser] = useState({})
+    const [photos, setPhotos] = useState([])
+    // const [currentUser, setCurrentUser] = useState({})
     const [open, setOpen] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -37,9 +39,8 @@ export const NavBarLoggedIn = (props) => {
 
     useEffect(
         () => {
-            getCurrentUser()
-                .then(setCurrentUser)
-
+                getCurrentUser()
+                    .then(setCurrentUser)
         }, []
     )
 
@@ -69,7 +70,7 @@ export const NavBarLoggedIn = (props) => {
                     onClick={() => {
                         setIsOpen(!isOpen)
                     }}>
-                        {GiHamburgerMenu()}
+                    {GiHamburgerMenu()}
                 </button>
                 <SideNavDropDown isOpen={isOpen} />
             </li>
@@ -110,7 +111,7 @@ export const NavBarLoggedIn = (props) => {
                             setOpen(!open)
                         }} />
                 </button>
-                <ProfileNavDropDown open={open} setCurrentUser={setCurrentUser} />
+                <ProfileNavDropDown open={open} />
             </li>
         </ul>
     )

@@ -2,26 +2,35 @@ import React, { useRef, useState } from "react"
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
 import "./Login.css"
-import { existingLoginUserCheck } from "../ApiManager";
+import useSimpleAuth from "../../hooks/useSimpleAuth";
 
 export const Login = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [credentials, syncAuth] = useState({
+        email: "",
+        password: ""
+    })
     const existDialog = useRef()
     const history = useHistory()
 
+    const { login } = useSimpleAuth()
+
     const handleLogin = (e) => {
         e.preventDefault()
-        existingLoginUserCheck(email)
-            .then(user => user.length && user[0].password === password ? user[0] : false)
+        login(credentials.email, credentials.password)
             .then(exists => {
                 if (exists) {
-                    localStorage.setItem("user_explorer", exists.id)
-                    history.push("/dashboard")
+                    history.push("/")
                 } else {
                     existDialog.current.showModal()
                 }
             })
+    }
+
+    const handleUserInput = (event) => {
+        const copy = {...credentials}
+        copy[event.target.id] = event.target.value
+        // syncAuth() is the state setting function for credentials
+        syncAuth(copy)
     }
 
     return (
@@ -37,7 +46,8 @@ export const Login = () => {
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input type="email"
-                            onChange={evt => setEmail(evt.target.value)}
+                            onChange={handleUserInput}
+                            id="email"
                             className="form-control"
                             placeholder="Email address"
                             required autoFocus />
@@ -45,7 +55,7 @@ export const Login = () => {
                     <fieldset>
                         <label htmlFor="password"> Password </label>
                         <input type="text"
-                            onChange={evt => setPassword(evt.target.value)}
+                            onChange={handleUserInput}
                             id="password"
                             className="form-control"
                             placeholder="Enter Password"

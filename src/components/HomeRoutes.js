@@ -3,7 +3,7 @@ import { NavBarLoggedOut } from "./nav/NavBar"
 import { Route } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
-import  { Landing } from "./landing/Landing"
+import { Landing } from "./landing/Landing"
 
 export default () => {
     return (

@@ -1,16 +1,16 @@
 .navbar {
     display: flex;
-    justify-content: space-between;
     list-style-type: none;
     margin: 0;
     padding: 1rem 0;
     overflow: hidden;
     background-color: #5F9EA0;
     z-index: 1;
+    width: 100%;
 }
 
-.navbar_logo {
-
+.logo {
+    margin-left: 2rem;
 }
 
 .navbar__login {
@@ -27,7 +27,7 @@
 }
 
 .navbar__search {
-    margin-left: 70rem;
+    margin-left: 80rem;
     margin-top: 1rem;
     width: 15%;
 }
@@ -73,7 +73,7 @@
 .sidenav_button {
     background-color: #5F9EA0;
     margin-top: .5rem;
-    margin-left: 1rem;
+    margin-left: .5rem;
     color: LightBlue;
     font-size: 56px;
     height: 57px;
@@ -98,19 +98,23 @@
 .profile_button {
     background-color: #5F9EA0;
     border-radius: 50%;
-    margin-right: 2rem;
     color: rgb(112, 112, 112);
     font-size: 16px;
+    margin-top: .2rem;
+    margin-left: 4rem;
     height: 60px;
-    width: 60px;
+    width: 50px;
     border: none;
     cursor: pointer;
+}
+
+.profile__dropdown {
+    width: 150px;
 }
 
 .dropbtn {
     background-color: #5F9EA0;
     border-radius: 50%;
-    margin-right: 2rem;
     color: white;
     font-size: 16px;
     height: 60px;

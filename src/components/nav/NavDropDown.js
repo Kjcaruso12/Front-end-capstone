@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Logout } from "../auth/Logout"
 
-export const ProfileNavDropDown = ({ open, setCurrentUser }) => {
+export const ProfileNavDropDown = ({ open }) => {
     return (
         open ?
             <div className="dropdown">
@@ -13,7 +13,6 @@ export const ProfileNavDropDown = ({ open, setCurrentUser }) => {
                 <Link
                     onClick={() => {
                         Logout()
-                        setCurrentUser({})
                     }}
                     className="profile_link" to="/home">
                     Log Out

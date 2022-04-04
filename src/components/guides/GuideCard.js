@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import { MdDelete } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"

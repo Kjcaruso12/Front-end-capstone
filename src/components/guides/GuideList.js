@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { GuideDialogSingleDelete, GuideDialogAllDelete } from "./GuideDialog"
 import { useModalAll, useModalSingle } from "../../hooks/useModal";
-import { getAllUserGuides, getPhotos, getYourGuides } from "../ApiManager";
+import { getAllUserGuides, getCurrentUser, getPhotos, getYourGuides } from "../ApiManager";
 import { GuideCard } from "./GuideCard"
-import Settings from "../../Settings";
 import { useHistory } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai"
 import "./GuideList.css"
 
 
-export const GuideList = (props) => {
+export const GuideList = () => {
+    const [user, setUser] = useState({})
     const [YourGuides, setYourGuides] = useState([])
     const [SavedGuides, setSavedGuides] = useState([])
     const [allUserGuides, setAllUserGuides] = useState([])
@@ -19,14 +19,20 @@ export const GuideList = (props) => {
     let { toggleAllDialog, allModalIsOpen } = useModalAll("#dialog--guides")
     const history = useHistory()
 
-    const currentUser = Settings.currentUser
+    useEffect(
+        () => {
+            getCurrentUser()
+                .then(setUser)
+        }
+        , []
+    )
+
 
     useEffect(
         () => {
-            if (currentUser !== 0) {
             let savedGuides = []
             //fetch all userGuides for current user
-            return getYourGuides(currentUser)
+            return getYourGuides(user.id)
                 .then((userGuides) => {
                     //iterate to get the array of saved guides where author property is true
                     const matchedGuides = userGuides?.filter(guide => guide.author === true)
@@ -38,8 +44,7 @@ export const GuideList = (props) => {
                     setYourGuides(matchedGuides)
                 })
         }
-    }
-        , [currentUser]
+        , [user]
     )
 
     useEffect(
@@ -140,7 +145,7 @@ export const GuideList = (props) => {
                             photos={photos}
                             confirmGuideDelete={confirmGuideDelete}
                             index={index}
-                            lastGuide={YourGuides.length - 1}
+                            lastGuide={SavedGuides.length - 1}
                         />)
                     }
                 </div>
