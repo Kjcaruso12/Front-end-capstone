@@ -27,12 +27,11 @@ export const GuideList = () => {
         , []
     )
 
-
     useEffect(
         () => {
             let savedGuides = []
             //fetch all userGuides for current user
-            return getYourGuides(user.id)
+            return getYourGuides(user?.id)
                 .then((userGuides) => {
                     //iterate to get the array of saved guides where author property is true
                     const matchedGuides = userGuides?.filter(guide => guide.author === true)
@@ -100,7 +99,6 @@ export const GuideList = () => {
         toggleAllDialog()
     }
 
-
     return (
 
         <div className="guide_list">
@@ -120,7 +118,7 @@ export const GuideList = () => {
                         <GuideCard key={`guide--${userGuide.id}`}
                             YourGuide={userGuide}
                             userGuides={allUserGuides}
-                            photos={photos}
+                            photo={photos}
                             confirmGuideDelete={confirmGuideDelete}
                             index={index}
                             lastGuide={YourGuides.length - 1}
@@ -142,7 +140,7 @@ export const GuideList = () => {
                         <GuideCard key={`guide--${userGuide.id}`}
                             YourGuide={userGuide}
                             userGuides={allUserGuides}
-                            photos={photos}
+                            photo={photos}
                             confirmGuideDelete={confirmGuideDelete}
                             index={index}
                             lastGuide={SavedGuides.length - 1}

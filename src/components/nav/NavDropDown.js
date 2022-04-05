@@ -29,18 +29,13 @@ export const SideNavDropDown = ({ isOpen }) => {
             <div className="sidenavbar">
                 <Link
                     className="sidenav_link"
-                    to="/dashboard">
+                    to="/">
                     Home
                 </Link>
                 <Link
                     className="sidenav_link"
                     to="/guides">
                     Browse Guides
-                </Link>
-                <Link
-                    className="sidenav_link"
-                    to="/locations">
-                    Explore
                 </Link>
             </div>
             : ""

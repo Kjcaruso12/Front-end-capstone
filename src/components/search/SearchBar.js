@@ -28,7 +28,7 @@ export const SearchBar = (props) => {
     useEffect(
         () => {
             getAllGuides()
-            .then(setGuides)
+                .then(setGuides)
         }
         , []
     )
@@ -69,10 +69,10 @@ export const SearchBar = (props) => {
                 <input type="text"
                     className="form-control"
                     onKeyPress={e => (doCitySearch(e.target.value))}
-                    placeholder="Which location?"
+                    placeholder="Which location would you like to look select?"
                     ref={inputRef} />
                 <ul className="city_list" ref={ulRef}>
-                    {suggestions?
+                    {suggestions ?
                         suggestions.map((suggestion, index) => {
                             return <button
                                 id={suggestion.id}
@@ -83,22 +83,22 @@ export const SearchBar = (props) => {
                                 onClick={(e) => {
                                     inputRef.current.value = suggestion.attributes.name
                                     setLocation(suggestion)
-
                                 }}>
                                 {suggestion.attributes.name}
                             </button>
                         })
-                        :""
+                        : ""
                     }
                 </ul>
+                <button
+                    className="city_submit"
+                    onClick={() => {
+                        history.push(`/guides/create/${location.id}`)
+                    }
+                    }>
+                    Start Guide
+                </button>
             </div>
-            <button
-                onClick={() => {
-                    history.push(`/guides/create/${location.id}`)
-                }
-                }>
-                Start Guide
-            </button>
         </>
     )
 }

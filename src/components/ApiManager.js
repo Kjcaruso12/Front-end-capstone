@@ -16,7 +16,7 @@ export const getAllUsers = () => {
 }
 
 export const getCurrentUser = () => {
-    return fetchIt(`${Settings.remoteURL}/users/${Settings.currentUser}`)
+    return fetchIt(`${Settings.remoteURL}/users/${user}?_expand=photo`)
 }
 
 export const getLocations = (guideId) => {
@@ -32,11 +32,11 @@ export const getOtherUserGuides = () => {
 }
 
 export const getAllGuides = () => {
-    return fetchIt(`${Settings.remoteURL}/guides`)
+    return fetchIt(`${Settings.remoteURL}/guides?_expand=city`)
 }
 
 export const getcurrentGuide = (guideId) => {
-    return fetchIt(`${Settings.remoteURL}/guides/${guideId}`)
+    return fetchIt(`${Settings.remoteURL}/guides/${guideId}?_expand=photo&_expand=city`)
 }
 
 export const getYourGuides = (user) => {
@@ -52,8 +52,8 @@ export const postGuide = (location) => {
     return fetchIt(`${Settings.remoteURL}/guides`, "POST", JSON.stringify(location))
 }
 
-export const postUserGuide = (location) => {
-    return fetchIt(`${Settings.remoteURL}/userguides`, "POST", JSON.stringify(location))
+export const postUserGuide = (guideId) => {
+    return fetchIt(`${Settings.remoteURL}/userguides`, "POST", JSON.stringify(guideId))
 }
 
 export const postGuideLocations = (guideLocation) => {
@@ -62,6 +62,14 @@ export const postGuideLocations = (guideLocation) => {
 
 export const postUser = (user) => {
     return fetchIt(`${Settings.remoteURL}/users`, "POST", JSON.stringify(user))
+}
+
+export const postPhoto = (photo) => {
+    return fetchIt(`${Settings.remoteURL}/photos`, "POST", JSON.stringify(photo))
+}
+
+export const postCity = (city) => {
+    return fetchIt(`${Settings.remoteURL}/cities`, "POST", JSON.stringify(city))
 }
 
 export const putLocations = (location) => {
@@ -87,14 +95,14 @@ export const deleteGuide = (userGuide) => {
 export const deleteAllSavedGuides = (id) => {
     //fetch all userGuides for currernt user
     return fetchIt(`${Settings.remoteURL}/userguides/userId=${id}`)
-    .then((userGuides) => {
-        //iterate to get the array of saved guides where author property is false
-        const matchedGuides = userGuides.map((guide) => {
-            return guide.author === false
+        .then((userGuides) => {
+            //iterate to get the array of saved guides where author property is false
+            const matchedGuides = userGuides.map((guide) => {
+                return guide.author === false
+            })
+            for (const savedGuide of matchedGuides) {
+                fetchIt(`${Settings.remoteURL}/userguides/${savedGuide.id}`, "DELETE")
+            }
         })
-        for (const savedGuide of matchedGuides) {
-            fetchIt(`${Settings.remoteURL}/userguides/${savedGuide.id}`, "DELETE")
-        }
-    })
 }
 

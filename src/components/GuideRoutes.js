@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { CitySelect } from "./guides/CitySelect";
 import { GuideForm } from "./guides/GuideForm";
 import { Guide } from "./guides/Guide";
+import { Guides } from "./guides/Guides";
 
 export default () => {
     return (
@@ -13,12 +14,12 @@ export default () => {
             <Route exact path="/guides/create/:cityId(\d+)">
                 <GuideForm />
             </Route>
-            {/* <Route exact path="/guides/:guideId(\d+)">
+            <Route exact path="/guides/:guideId(\d+)">
                 <Guide />
-            </Route> */}
-            {/* <Route exact path="/guides">
+            </Route>
+            <Route exact path="/guides">
                 <Guides />
-            </Route> */}
+            </Route>
         </>
     )
 }

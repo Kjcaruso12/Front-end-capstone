@@ -4,35 +4,36 @@ import { MdDelete } from "react-icons/md"
 import { AiFillStar } from "react-icons/ai"
 import "./GuideList.css"
 
-export const GuideCard = ({ YourGuide, confirmGuideDelete, photos, lastGuide, index, userGuides }) => {
-    const matchphoto = photos?.find(photo => photo.id === YourGuide.guide.photoId)
+export const GuideCard = ({ YourGuide, confirmGuideDelete, photo, lastGuide, index, userGuides }) => {
 
-    const totalFavorites = (YourGuide) => {
-        const allUserGuides = userGuides?.filter(userGuide => userGuide.guideId === YourGuide.id)
+    const matchPhoto = photo?.find(pho => pho.id === YourGuide?.guide?.photoId)
+
+    const totalFavorites = (Yourguide) => {
+        const allUserGuides = userGuides?.filter(userGuide => userGuide.guideId === Yourguide?.guide?.id)
         const numberOfFavorites = allUserGuides?.filter(guide => guide.author === false).length
         return numberOfFavorites
-    }
+}
+
 
     const isAuthor = YourGuide.author
     return (
-
         <>
-            {YourGuide?
+            {YourGuide && photo?
                 <div className="guiderow">
                     <div className="guide_link">
-                        {isAuthor?
-                        <Link to={`/guides/create/${YourGuide.guide.cityId}`}>
-                            <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
-                        </Link>
-                        :
-                        <Link to={`/guides/${YourGuide.guideId}`}>
-                            <img className="guide_image" src={matchphoto?.imgPath} alt="travel image" />
-                        </Link>
+                        {isAuthor ?
+                            <Link to={`/guides/create/${YourGuide?.guide?.cityId}`}>
+                                <img className="guide_image" src={matchPhoto?.imgPath} alt="travel image" />
+                            </Link>
+                            :
+                            <Link to={`/guides/${YourGuide?.guideId}`}>
+                                <img className="guide_image" src={matchPhoto?.imgPath} alt="travel image" />
+                            </Link>
                         }
                     </div>
                     <div className="guide_details">
                         <div className="title">
-                            {YourGuide.guide.title}
+                            {YourGuide?.guide?.title}
                         </div>
                         <div className="favorites">
                             {AiFillStar()}

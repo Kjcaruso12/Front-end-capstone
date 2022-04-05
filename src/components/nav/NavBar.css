@@ -1,12 +1,21 @@
 .navbar {
     display: flex;
     list-style-type: none;
+    justify-content: space-between;
     margin: 0;
     padding: 1rem 0;
     overflow: hidden;
     background-color: #5F9EA0;
     z-index: 1;
     width: 100%;
+}
+
+.left_nav {
+    display: flex;
+}
+
+.right_nav {
+    display: flex;
 }
 
 .logo {
@@ -27,9 +36,8 @@
 }
 
 .navbar__search {
-    margin-left: 80rem;
     margin-top: 1rem;
-    width: 15%;
+    width: 100%;
 }
 
 #city_search {
@@ -100,8 +108,8 @@
     border-radius: 50%;
     color: rgb(112, 112, 112);
     font-size: 16px;
+    margin-right: 5rem;
     margin-top: .2rem;
-    margin-left: 4rem;
     height: 60px;
     width: 50px;
     border: none;
@@ -150,3 +158,37 @@
 }
 
 .dropdown a:hover {background-color: gray;}
+
+.company {
+    margin-left: 1rem;
+}
+
+.searchpage {
+    margin-right: 7rem;
+    margin-bottom: 5rem;
+}
+
+.city_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 10rem;
+    padding-left: 0;
+}
+
+.citylist_item {
+    background-color: white;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.city_submit {
+    width: 20%;
+    margin-left: 25rem;
+    margin-top: 10rem;
+    background-color: white;
+}
+
+.form-control {
+    background-color: white;
+}

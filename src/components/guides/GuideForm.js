@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { getAllGuides, getLocations, getPhotos, getYourGuides, postGuide, postGuideLocations, postUserGuide, putGuide, putLocations } from "../ApiManager"
+import { getAllGuides, getLocations, getPhotos, getYourGuides, postGuide, postGuideLocations, postPhoto, postUserGuide, putGuide, putLocations } from "../ApiManager"
 import "./GuideForm.css"
 import Settings from "../../Settings"
 
@@ -84,7 +84,7 @@ export const GuideForm = () => {
 
     useEffect(
         () => {
-            if (parseInt(cityId) < 10 && currentGuide !== null) {
+            if (currentGuide !== null) {
                 const matchPhoto = photos?.find(pho => pho.id === currentGuide?.guide.photoId)
                 setGuideTitle(currentGuide?.guide?.title)
                 setPhoto(matchPhoto)
@@ -204,6 +204,17 @@ export const GuideForm = () => {
                 dateEdited: timestamp.toLocaleString("en-US"),
             }
             postGuide(newGuide)
+            .then(() => {
+                const newPhoto = {
+                    title: guideTitle,
+                    imgPath: photo
+                }
+                return newPhoto
+                })
+                .then((newPhoto) => {
+                    setPhoto(newPhoto)
+                })
+
         }
         history.push("/")
     }

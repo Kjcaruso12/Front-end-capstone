@@ -3,6 +3,7 @@ import { getCurrentUser, getPhotos, putUser } from "../ApiManager"
 import { useModalAccount } from "../../hooks/useModal"
 import { AccountDialog } from "./AccountDialog"
 import { useHistory } from "react-router-dom"
+import "./Account.css";
 
 
 export const Account = (props) => {

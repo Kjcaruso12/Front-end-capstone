@@ -1,0 +1,31 @@
+.container--account {
+    display: flex;
+    justify-content: center;
+}
+
+.form--account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+}
+
+label {
+    margin-left: 4rem;
+}
+
+.delete {
+    margin-left: 10rem;
+}
+
+.update {
+    margin-left: 10rem;
+}
+
+.form-field {
+    text-align: left;
+}
+
+h2 {
+    text-align: center;
+}
