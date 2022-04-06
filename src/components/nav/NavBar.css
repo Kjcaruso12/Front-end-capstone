@@ -28,7 +28,6 @@
 
 .navbar__register {
     padding-right: 1rem;
-    margin-left: 100rem;
 }
 
 .navbar__profile {
@@ -91,7 +90,7 @@
 }
 
 .sidenav_button:hover {
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidenav_link {
@@ -101,7 +100,9 @@
     display: block;
 }
 
-.sidenavbar a:hover {background-color: gray;}
+.sidenavbar a:hover {
+    background-color: gray;
+}
 
 .profile_button {
     background-color: #5F9EA0;
@@ -131,8 +132,9 @@
     cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+.dropbtn:hover,
+.dropbtn:focus {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown {
@@ -157,7 +159,9 @@
     display: block;
 }
 
-.dropdown a:hover {background-color: gray;}
+.dropdown a:hover {
+    background-color: gray;
+}
 
 .company {
     margin-left: 1rem;

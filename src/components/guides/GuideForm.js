@@ -84,8 +84,8 @@ export const GuideForm = () => {
 
     useEffect(
         () => {
-            if (currentGuide !== null) {
-                const matchPhoto = photos?.find(pho => pho.id === currentGuide?.guide.photoId)
+            if (currentGuide !== undefined) {
+                const matchPhoto = photos?.find(pho => pho.id === currentGuide?.guide?.photoId)
                 setGuideTitle(currentGuide?.guide?.title)
                 setPhoto(matchPhoto)
             }
@@ -107,7 +107,7 @@ export const GuideForm = () => {
                         })
                         guideName = (location?.data?.attributes?.name + ' Guide')
                         setGuideTitle(guideName)
-                        setPhoto(foundPhotos[2])
+                        setPhoto(foundPhotos[0])
                     })
             }
             setDescription(currentGuide?.guide?.description)
@@ -134,7 +134,7 @@ export const GuideForm = () => {
         () => {
             getYourGuides(Settings.currentUser)
                 .then((yourGuides) => {
-                    const matchGuide = yourGuides?.find(item => item.guide.cityId === parseInt(cityId) && item.author === true)
+                    const matchGuide = yourGuides?.find(item => item.guide?.cityId === parseInt(cityId) && item.author === true)
                     setCurrentGuide(matchGuide)
                 })
         }
@@ -220,7 +220,7 @@ export const GuideForm = () => {
     }
 
     return (
-        places && photo ?
+        photos && places?
             <>
                 <div className="editorContainer">
                     <div className="planpage_container_maxWidth">
@@ -247,11 +247,7 @@ export const GuideForm = () => {
                                                         <div className="d-flex flex-nowrap">
                                                             <button className="editorBubble__container btn p-0 editorCursors__bubble"
                                                                 type="button">
-                                                                <div className="position-relative">
-                                                                    {/* <span className="bubble bubble__size__md bubble__colorTheme__gray300 user-select-none d-flex align-items-center justify-content-center editorBubble__bubble editorBubble__active">
-                                                                    <div>K</div>
-                                                                </span> */}
-                                                                </div>
+                                                                <div className="position-relative"></div>
                                                             </button>
                                                         </div>
                                                     </div>

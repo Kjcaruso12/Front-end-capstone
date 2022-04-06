@@ -8,14 +8,14 @@ import { Guides } from "./guides/Guides";
 export default () => {
     return (
         <>
-            <Route exact path="/guides/create">
-                <CitySelect />
-            </Route>
-            <Route exact path="/guides/create/:cityId(\d+)">
+            <Route path="/guides/create/:cityId(\d+)">
                 <GuideForm />
             </Route>
-            <Route exact path="/guides/:guideId(\d+)">
+            <Route  path="/guides/:guideId(\d+)">
                 <Guide />
+            </Route>
+            <Route exact path="/guides/create">
+                <CitySelect />
             </Route>
             <Route exact path="/guides">
                 <Guides />

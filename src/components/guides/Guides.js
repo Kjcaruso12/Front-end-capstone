@@ -58,16 +58,14 @@ export const Guides = () => {
 
 
     return (
-
         <ul className="guides">
-
             {allGuides?.map((userGuide, index) =>
                 <GuideView key={`guide--${userGuide.id}`}
                     YourGuide={userGuide}
                     userGuides={allGuides}
                     photos={photos}
                     index={index}
-                    lastGuide={YourGuides.length - 1}
+                    lastGuide={allGuides.length - 1}
                 />)
             }
         </ul>

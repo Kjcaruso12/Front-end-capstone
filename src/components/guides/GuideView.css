@@ -1,4 +1,4 @@
-/* .your__container {
+ /* .your__container {
     display: flex;
     flex-direction: row;
     width: 30%;
@@ -8,8 +8,8 @@
     background-color: rgb(230, 230, 230);
     list-style-type: none;
     overflow: hidden;
-}
-
+} */
+/*
 .saved__container {
     display: flex;
     flex-direction: row;
@@ -35,14 +35,6 @@
 .title {
     font-size: 18px;
 }
-
-.guides {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    list-style-type: none;
-}
-
 .guide_list {
     display: flex;
     flex-direction: row;
@@ -96,3 +88,10 @@
 .single_guide {
     width: 100%;
 } */
+
+.guides {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style-type: none;
+}

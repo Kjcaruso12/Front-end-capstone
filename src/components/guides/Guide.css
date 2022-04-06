@@ -33,13 +33,12 @@ textarea {
     justify-content: space-evenly;
     text-align: center;
     width: 100%;
-    height: 1200px;
+    height: 100%;
 }
 
 .guide_tiptitle {
     font-size: 32px;
     text-align: left;
-    margin-top: 4rem;
 }
 
 .guide_descriptiontitle {
@@ -116,8 +115,9 @@ textarea {
     word-wrap: break-word;
     word-break: break-all;
     padding-left: 1rem;
+    padding-right: 1rem;
     height: 200px;
-    width: 100%;
+    width: 80%;
     margin-right: 4rem;
     margin-top: 1rem;
     background-color: white;
@@ -130,7 +130,7 @@ textarea {
     word-break: break-all;
     padding-left: 1rem;
     height: 200px;
-    width: 100%;
+    width: 80%;
     margin-right: 4rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -215,13 +215,13 @@ textarea {
     border-radius: 8px;
     bottom: 0;
     box-shadow: 0 4px 24px rgb(0 0 0 / 20%);
-    left: 600px;
+     left: 600px;
     margin-left: auto;
     margin-right: auto;
     min-height: 160px;
     padding: 12px 12px 12px 20px;
     position: absolute;
-    right: 600px;
+     right: 640px;
 }
 
 .planPageHeader__imgContainer {
@@ -312,7 +312,7 @@ textarea {
     }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 600px) {
     .planPageHeader__header {
         left: 16px;
         right: 16px;

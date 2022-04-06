@@ -9,18 +9,22 @@ import { ProfileNavDropDown, SideNavDropDown } from "./NavDropDown"
 export const NavBarLoggedOut = () => {
     return (
         <ul className="navbar">
-            <li className="navbar__logo">
-                <img className="logo" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNccW7TWXzwbtB0dN03i3TJoRFeGrrI_CGTg&usqp=CAU"} alt="Company Logo" width="75" height="75" />
-            </li>
-            <li>
-                <h2 className="company">AdventureBound</h2>
-            </li>
-            <li className="navbar__register">
-                <Link className="navbar__link" to="/register">Sign Up</Link>
-            </li>
-            <li className="navbar__login ">
-                <Link className="navbar__link" to="/login">Sign In</Link>
-            </li>
+            <div className="left_nav">
+                <li className="navbar__logo">
+                    <img className="logo" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNccW7TWXzwbtB0dN03i3TJoRFeGrrI_CGTg&usqp=CAU"} alt="Company Logo" width="75" height="75" />
+                </li>
+                <li>
+                    <h2 className="company">AdventureBound</h2>
+                </li>
+            </div>
+            <div className="right_nav">
+                <li className="navbar__register">
+                    <Link className="navbar__link" to="/register">Sign Up</Link>
+                </li>
+                <li className="navbar__login ">
+                    <Link className="navbar__link" to="/login">Sign In</Link>
+                </li>
+            </div>
         </ul>
     )
 }
